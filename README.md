@@ -1,4 +1,10 @@
 # Active-Directory-Enterprise-Lab
+
+<p align="center">
+  <img src="Architectural Diagram/AD-Enterprise-Diagram.png" width="800"/>
+</p>
+
+
 This is a Homelab where I experiment with Active Directory on a Windows server VM as my DC and multiple Windows 11 Enterprise VM's as my Clients. All the work is a representation of what User management would appear in a small/medium enterprise and how the organizational structure would appear. 
 
 The focus was building something that actually behaves like a real syste, with clear segmentation through departments, controlled access to resources, enforced policies, and validation of how everything works in practice.
