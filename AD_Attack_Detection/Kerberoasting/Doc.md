@@ -26,7 +26,9 @@ From the Kali machine, Impacket was used with compromised domain user credential
 
 This mimics a typical Kerberoasting scenario where an attacker, already in possession of valid domain credentials, targets service accounts to extract ticket hashes for offline cracking.
 
-![Impacket Execution](images/impacket_command.png)
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Impacket Command.png" width="800"/>
+</p>
 
 ---
 
@@ -43,8 +45,14 @@ index=* EventCode=4769
 
 This highlights all Kerberos TGS requests.
 
-![4769 Query](images/query1.png)  
-![4769 Results](images/query1_result.png)
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Query1.png" width="800"/>
+</p>
+
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Query1 Result.png" width="800"/>
+</p>
+
 
 From here, the account `HRHindocha` stood out as part of the activity.
 
@@ -61,9 +69,14 @@ index=* Account_Name="HRHindocha"
 | stats count by Client_Address
 | sort count
 
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Query2.png" width="800"/>
+</p>
 
-![User Activity Query](images/query2.png)  
-![User Activity Results](images/query2_result.png)
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Query2 Result.png" width="800"/>
+</p>
+
 
 One IP address showed a very limited number of events, which made it stand out compared to normal background activity.
 
@@ -80,8 +93,13 @@ index=* EventCode=4769
 | stats count by Ticket_Encryption_Type
 
 
-![Encryption Query](images/query3.png)  
-![Encryption Results](images/query3_result.png)
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Query3.png" width="800"/>
+</p>
+
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Query3 Result.png" width="800"/>
+</p>
 
 Most tickets used AES (`0x12`), which is expected in modern environments.
 
@@ -93,6 +111,10 @@ However, there was a single instance of:
 This is significant because RC4 is commonly associated with Kerberoasting activity due to its weaker encryption.
 
 The source IP tied to this RC4 request matched the earlier suspicious IP, confirming the behaviour.
+
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Final Evidence.png" width="800"/>
+</p>
 
 ---
 
@@ -112,8 +134,14 @@ This allowed us to reasonably conclude that Kerberoasting activity had been emul
 
 Immediate containment was performed by disabling the compromised account:
 
+
+<p align="center">
+  <img src="../../screenshots/AD Screenshots/Kerberoasting/Remdiation.png" width="800"/>
+</p>
+
 ```powershell
 Disable-ADAccount -Identity HRHindocha
+
 
 In a real-world environment, this would be followed by:
 
