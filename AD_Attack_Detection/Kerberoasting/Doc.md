@@ -139,9 +139,8 @@ Immediate containment was performed by disabling the compromised account:
   <img src="../../screenshots/AD Screenshots/Kerberoasting/Remdiation.png" width="800"/>
 </p>
 
-```powershell
+powershell
 Disable-ADAccount -Identity HRHindocha
-
 
 In a real-world environment, this would be followed by:
 
