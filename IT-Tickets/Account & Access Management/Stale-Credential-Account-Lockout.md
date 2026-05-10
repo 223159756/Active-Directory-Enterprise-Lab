@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Ticket Resolution documents a repeated account lockout issue encountered in a controlled Active Directory lab, where a domain user was being locked out continuously — even after the account was unlocked — without any apparent login attempts by the user.
+This Ticket Resolution documents a repeated account lockout issue encountered in a controlled Active Directory lab, where a domain user was being locked out continuously - even after the account was unlocked - without any apparent login attempts by the user.
 
 The focus here was identifying the root cause through structured investigation and understanding how saved credentials in Windows Credential Manager interact with domain authentication, and how such problems appear from an IT support perspective.
 
@@ -11,13 +11,13 @@ This was performed in a lab environment, so while the behaviour reflects real-wo
 ## Lab Setup
 
 Domain Controller (Windows Server 2022)
-Windows 11 (Domain-joined client — COMPUTER1)
+Windows 11 (Domain-joined client - COMPUTER1)
 VirtualBox (NAT + Host-only network configuration)
 Active Directory Domain: Ranya.local
 
 ## Issue Encountered
 
-A domain user (HaroldJones) reported being unable to stay logged in — their account kept locking out shortly after being unlocked by the helpdesk.
+A domain user (HaroldJones) reported being unable to stay logged in - their account kept locking out shortly after being unlocked by the helpdesk.
 
 The user confirmed they had not mistyped their password.
 
@@ -79,7 +79,7 @@ Filtering the Security log on the Domain Controller for Event ID 4771 confirmed 
 
 The failure code 0x18 confirmed the cause was an incorrect password, not an expired account or policy restriction.
 
-### 5. ADUC — Bad Password Count
+### 5. ADUC - Bad Password Count
 
 Checking HaroldJones' properties in Active Directory Users and Computers (with Advanced Features enabled) confirmed the account had accumulated a high bad password count, consistent with repeated automated retries.
 
@@ -123,6 +123,6 @@ This aligns with a common Active Directory support scenario where account lockou
 
 ## Final Note
 
-This exercise highlights an important IT support pattern — repeated lockouts that resume shortly after unlocking are almost always caused by a background process or saved credential, not the user themselves.
+This exercise highlights an important IT support pattern - repeated lockouts that resume shortly after unlocking are almost always caused by a background process or saved credential, not the user themselves.
 
 The focus here was on identifying the actual source of the authentication attempts through Event Viewer and Credential Manager rather than simply unlocking the account and closing the ticket.
