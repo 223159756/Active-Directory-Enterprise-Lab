@@ -42,7 +42,7 @@ The most common causes for this in a real environment are:
 
 ## Investigation
 
-### 1. Event Viewer — System Log
+### 1. Event Viewer - System Log
 
 To confirm and document the error beyond the dialog box, Event Viewer was opened on COMPUTER1 and the System log was filtered for Application Popup events around the time of the failed launch.
 
